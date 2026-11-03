@@ -6,9 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "export": "next export",
     "lint": "eslint"
   },
   "dependencies": {
+    "@types/alpinejs": "^3.17.0",
+    "alpinejs": "^3.17.5",
+    "motion": "^14.9.0",
     "next": "16.4.4",
     "react": "19.3.0",
     "react-dom": "19.3.0"
