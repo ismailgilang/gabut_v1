@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useReducedMotion, useScroll, useSpring } from "motion/react";
 import { useEffect, useRef } from "react";
 
 const links = [
@@ -12,6 +13,13 @@ const links = [
 
 export function Navbar() {
   const navRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 140,
+    damping: 28,
+    restDelta: 0.001,
+  });
+  const reduced = useReducedMotion();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -87,6 +95,12 @@ export function Navbar() {
           </button>
         </div>
       </div>
+
+      <motion.div
+        aria-hidden="true"
+        className="absolute bottom-0 left-0 right-0 h-[3px] origin-left bg-secondary"
+        style={{ scaleX: reduced ? scrollYProgress : progress }}
+      />
     </header>
   );
 }
